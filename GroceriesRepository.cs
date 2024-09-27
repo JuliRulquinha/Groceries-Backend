@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Microsoft.SqlServer.Server;
+using Dapper;
+using System.Security.Cryptography.X509Certificates;
+using System.Xml.Linq;
 
 
 
@@ -13,14 +16,20 @@ namespace Groceries
 {
     public class GroceriesRepository
     {
-        SqlConnection Connection = new SqlConnection("Server=localhost;Database=Groceries;Trusted_Connection=True;");
-        SqlCommand? command;
+        private readonly SqlConnection _connection;
+        private SqlCommand _command;
+
+        public GroceriesRepository(SqlConnection connection)
+        {
+            _connection = connection;
+        }
+
         public bool TestConnection()
         {
 
             try
             {
-                Connection.Open();
+                _connection.Open();
                 Console.WriteLine("It worked");
                 return true;
             }
@@ -31,17 +40,34 @@ namespace Groceries
             }
         }
 
-        public Products GetProductByName(string name)
+        public Product GetProductByNameUsingDapper(string name)
         {
             try
             {
-                Connection.Open();
+                _connection.Open();
+
+               return _connection.QuerySingle<Product>($"SELECT * FROM Products WHERE Name like '{name}'");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return null;
+
+        }
+        public Product GetProductByName(string name)
+        {
+            try
+            {
+                _connection.Open();
 
                 string searchCommand = $"SELECT * FROM Products WHERE Name like '{name}'";
-                SqlCommand searchForProduct = Connection.CreateCommand();
+                SqlCommand searchForProduct = _connection.CreateCommand();
                 searchForProduct.CommandText = searchCommand;
                 var reader = searchForProduct.ExecuteReader();
-                Products p = new Products();
+                Product p = new Product();
 
                 while (reader.Read())
                 {
@@ -60,17 +86,17 @@ namespace Groceries
             return null;
 
         }
-        public bool Save(Products p)
+        public bool Save(Product p)
         {
 
             try
             {
-                Connection.Open();
+                _connection.Open();
 
                 string commandText = $"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES('{p.name}','{p.imgUrl}','{p.Description}',{p.price},{p.quantity}, {p.categoryId} ) ";
-                SqlCommand command = Connection.CreateCommand();
-                command.CommandText = commandText;
-                var result = command.ExecuteNonQuery();
+                _command = _connection.CreateCommand();
+                _command.CommandText = commandText;
+                var result = _command.ExecuteNonQuery();
 
                 if (result == 0)
                 {
@@ -92,17 +118,17 @@ namespace Groceries
             return true;
         }
 
-        public Products GetById(int id)
+        public Product GetById(int id)
         {
 
             try
             {
-                Connection.Open();
+                _connection.Open();
 
                 string commandText = $"SELECT * FROM Products WHERE id={id}";
-                command = Connection.CreateCommand();
-                command.CommandText = commandText;
-                var output = command.ExecuteNonQuery();
+                _command = _connection.CreateCommand();
+                _command.CommandText = commandText;
+                var output = _command.ExecuteNonQuery();
 
                 if (output == 0)
                 {
@@ -120,16 +146,16 @@ namespace Groceries
             return null;
         }
 
-        public void UpdateById(int id, Products updatedProduct)
+        public void UpdateById(int id, Product updatedProduct)
         {
             try
             {
-                Connection.Open();
+                _connection.Open();
 
                 string commandText = $"UPDATE Products SET Name='{updatedProduct.name}',imgUrl='{updatedProduct.imgUrl}',Description='{updatedProduct.Description}',Price={updatedProduct.price},Quantity={updatedProduct.quantity},categoryID={updatedProduct.categoryId} WHERE id={id}";
-                command = Connection.CreateCommand();
-                command.CommandText = commandText;
-                var result = command.ExecuteNonQuery();
+                _command = _connection.CreateCommand();
+                _command.CommandText = commandText;
+                var result = _command.ExecuteNonQuery();
 
                 if (result == 0)
                 {
@@ -152,12 +178,12 @@ namespace Groceries
 
             try
             {
-                Connection.Open();
+                _connection.Open();
 
                 string commandText = $"DELETE FROM Products WHERE id={id}";
-                command = Connection.CreateCommand();
-                command.CommandText = commandText;
-                var numberOfRowsAffected = command.ExecuteNonQuery();
+                _command = _connection.CreateCommand();
+                _command.CommandText = commandText;
+                var numberOfRowsAffected = _command.ExecuteNonQuery();
 
                 if (numberOfRowsAffected == 0)
                 {
@@ -172,6 +198,65 @@ namespace Groceries
             {
                 Console.WriteLine(ex.Message);
             }
+
+            
+        }
+
+        public IEnumerable<Product> GetProductsByCategoryId(int categoryId) 
+        {
+            List<Product> products = new List<Product>();
+
+
+            try
+            {
+                _connection.Open();
+
+
+                var command = new SqlCommand($"SELECT * FROM Products where categoryId = {categoryId}", _connection);
+
+                var reader = command.ExecuteReader();
+
+                while (reader.Read()) {
+                    var p = new Product();
+                    var isAvailable = false;
+
+                    p.id = Convert.ToInt32(reader["id"]);
+                    p.name = reader["name"].ToString();
+                    p.price = Convert.ToDecimal(reader["price"]);
+                    p.imgUrl = reader["imgUrl"].ToString();
+                    p.Description = reader["Description"].ToString();
+                    Boolean.TryParse( reader["isAvailable"].ToString() ,out isAvailable);
+                    p.isAvailable = isAvailable;
+                    p.categoryId = Convert.ToInt32(reader["categoryId"]);
+                    p.quantity = Convert.ToInt32(reader["quantity"]);
+
+
+                    products.Add(p);
+                }
+
+                return products;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
+        public IEnumerable<Product> GetProductsByCategoryIdUsingDapper(int categoryId)
+        {
+            try
+            {
+                _connection.Open();
+
+                return _connection.Query<Product>($"SELECT * FROM Products WHERE categoryID={categoryId}");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
         }
     }
 }

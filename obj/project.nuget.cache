@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "TWU1lLOFeXM=",
+  "dgSpecHash": "zUsqn69hPRY=",
   "success": true,
   "projectFilePath": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\Groceries.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\W1021H2\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
     "C:\\Users\\W1021H2\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\W1021H2\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\W1021H2\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

@@ -1,4 +1,6 @@
 
+using System.Data.SqlClient;
+
 namespace Groceries
 {
     public class Program
@@ -32,16 +34,17 @@ namespace Groceries
 
             app.Run();
 
-            Products product = new Products();
+            Product product = new Product();
             product.name = "Test2";
             product.imgUrl = "not even an image";
             product.Description = "Description";
             product.price = 5000;
             product.quantity = 1;
             product.categoryId = 1;
-            
 
-            GroceriesRepository groceriesRepository = new GroceriesRepository();
+            SqlConnection connection = new SqlConnection();
+
+            GroceriesRepository groceriesRepository = new GroceriesRepository(connection);
             //groceriesRepository.DeleteById(5);
             groceriesRepository.UpdateById(6, product);
 

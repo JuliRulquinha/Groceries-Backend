@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Groceries;
+using System.Data.SqlClient;
+using System.Timers;
 
 namespace Groceries.Controllers
 {
@@ -15,8 +17,10 @@ namespace Groceries.Controllers
         [HttpGet("Products/{productName}")]
         public string GetProduct(string productName)
         {
-            GroceriesRepository productRepository = new GroceriesRepository();
-            var p = productRepository.GetProductByName(productName);
+            SqlConnection connection = new SqlConnection("Server=localhost;Database=Groceries;Trusted_Connection=True;");
+
+            GroceriesRepository productRepository = new GroceriesRepository(connection);
+            var p = productRepository.GetProductByNameUsingDapper(productName);
 
             if(p is not null && p.id> 0)
             {
@@ -27,6 +31,25 @@ namespace Groceries.Controllers
             {
                 return "Product not found.";
             }
+
+        }
+
+        [HttpGet("Products/Category/{categoryId}")]
+        public IEnumerable<Product> GetProductsByCategory(int categoryId)
+        {
+            SqlConnection connection = new SqlConnection("Server=localhost;Database=Groceries;Trusted_Connection=True;");
+
+            
+            GroceriesRepository productRepository = new GroceriesRepository(connection);
+
+            System.Timers.Timer timer = new System.Timers.Timer();
+
+            timer.Start();
+            var products = productRepository.GetProductsByCategoryId(categoryId);
+            timer.Stop();
+
+            Console.WriteLine($"Elapsed time: {timer.Interval}");
+            return products;
 
         }
     }
