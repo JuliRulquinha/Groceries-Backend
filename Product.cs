@@ -10,5 +10,12 @@
         public int quantity { get; set; }
         public bool? isAvailable { get; set; }
         public int categoryId { get; set; }
+
+        public Product()
+        {
+            
+        }
     }
+    
 }
+

@@ -2,6 +2,7 @@
 using Groceries;
 using System.Data.SqlClient;
 using System.Timers;
+using System.Diagnostics;
 
 namespace Groceries.Controllers
 {
@@ -10,9 +11,9 @@ namespace Groceries.Controllers
     {
         [HttpGet("SayHello")]
 
-        public string Hello() 
+        public string Hello()
         {
-            return "Hello from products controller";        
+            return "Hello from products controller";
         }
         [HttpGet("Products/{productName}")]
         public string GetProduct(string productName)
@@ -22,12 +23,12 @@ namespace Groceries.Controllers
             GroceriesRepository productRepository = new GroceriesRepository(connection);
             var p = productRepository.GetProductByNameUsingDapper(productName);
 
-            if(p is not null && p.id> 0)
+            if (p is not null && p.id > 0)
             {
                 return $"{p.name} {p.Description}";
 
             }
-            else 
+            else
             {
                 return "Product not found.";
             }
@@ -35,22 +36,39 @@ namespace Groceries.Controllers
         }
 
         [HttpGet("Products/Category/{categoryId}")]
-        public IEnumerable<Product> GetProductsByCategory(int categoryId)
+        public async Task<IEnumerable<Product>> GetProductsByCategory(int categoryId)
         {
             SqlConnection connection = new SqlConnection("Server=localhost;Database=Groceries;Trusted_Connection=True;");
 
-            
+
             GroceriesRepository productRepository = new GroceriesRepository(connection);
 
-            System.Timers.Timer timer = new System.Timers.Timer();
+            Stopwatch stopwatch = new Stopwatch();
 
-            timer.Start();
-            var products = productRepository.GetProductsByCategoryId(categoryId);
-            timer.Stop();
+            stopwatch.Start();
+            var products = await productRepository.GetProductsByCategoryIdUsingDapperAsync(categoryId);
+            stopwatch.Stop();
+            Console.WriteLine(stopwatch.ElapsedMilliseconds);
 
-            Console.WriteLine($"Elapsed time: {timer.Interval}");
             return products;
 
         }
+        [HttpPost("Products")]
+
+        public async Task CreateProduct([FromBody]Product p)
+        {
+            SqlConnection connection = new SqlConnection("Server=localhost;Database=Groceries;Trusted_Connection=True;");
+
+            GroceriesRepository repository = new GroceriesRepository(connection);
+
+            Stopwatch stopwatch = new Stopwatch();
+
+            stopwatch.Start();
+            await repository.SaveWithDapper(p);
+            stopwatch.Stop();
+            Console.WriteLine(stopwatch.ElapsedMilliseconds);
+        }
+
     }
+
 }

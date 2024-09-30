@@ -93,10 +93,48 @@ namespace Groceries
             {
                 _connection.Open();
 
-                string commandText = $"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES('{p.name}','{p.imgUrl}','{p.Description}',{p.price},{p.quantity}, {p.categoryId} ) ";
+                //string commandText = $"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES('{p.name}','{p.imgUrl}','{p.Description}',{p.price},{p.quantity}, {p.categoryId} ) ";
+                string commandText = $"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES(@Name, @imgUrl, @Description, @Price, @Quantity, @categoryID ) ";
                 _command = _connection.CreateCommand();
                 _command.CommandText = commandText;
+                _command.Parameters.AddWithValue("@name", p.name);
+                _command.Parameters.AddWithValue("@imgUrl", p.imgUrl); 
+                _command.Parameters.AddWithValue("@Description", p.Description);
+                _command.Parameters.AddWithValue("@price", p.price);
+                _command.Parameters.AddWithValue("@quantity", p.quantity);
+                _command.Parameters.AddWithValue("@categoryID", p.categoryId);
                 var result = _command.ExecuteNonQuery();
+
+                if (result == 0)
+                {
+                    Console.WriteLine("The insertion command failed to excute.");
+
+                }
+                else
+                {
+                    Console.WriteLine($"Inserted items: {result}");
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return true;
+        }
+
+        public async Task<bool> SaveWithDapper(Product p)
+        {
+
+            try
+            {
+                _connection.Open();
+
+                //string commandText = $"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES('{p.name}','{p.imgUrl}','{p.Description}',{p.price},{p.quantity}, {p.categoryId} ) ";
+                var result = await _connection.ExecuteAsync($"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES(@Name, @imgUrl, @Description, @Price, @Quantity, @categoryID ) ", p); 
+
 
                 if (result == 0)
                 {
@@ -243,13 +281,14 @@ namespace Groceries
             }
             return null;
         }
-        public IEnumerable<Product> GetProductsByCategoryIdUsingDapper(int categoryId)
+        public async Task<IEnumerable<Product>> GetProductsByCategoryIdUsingDapperAsync(int categoryId)
         {
             try
             {
                 _connection.Open();
 
-                return _connection.Query<Product>($"SELECT * FROM Products WHERE categoryID={categoryId}");
+                //return _connection.Query<Product>($"SELECT * FROM Products WHERE categoryID={categoryId}");
+                return await _connection.QueryAsync<Product>($"SELECT * FROM Products WHERE categoryID={categoryId}");
 
             }
             catch (Exception ex)
@@ -258,5 +297,7 @@ namespace Groceries
             }
             return null;
         }
+
+        
     }
 }
