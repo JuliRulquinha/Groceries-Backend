@@ -34,21 +34,21 @@ namespace Groceries
 
             app.Run();
 
-            Product product = new Product();
-            product.name = "Test2";
-            product.imgUrl = "not even an image";
-            product.description = "Description";
-            product.price = 5000;
-            product.quantity = 1;
-            product.categoryId = 1;
+            //Product product = new Product();
+            //product.name = "Test2";
+            //product.imgUrl = "not even an image";
+            //product.description = "Description";
+            //product.price = 5000;
+            //product.quantity = 1;
+            //product.categoryId = 1;
 
-            SqlConnection connection = new SqlConnection();
+            //SqlConnection connection = new SqlConnection();
 
-            GroceriesRepository groceriesRepository = new GroceriesRepository(connection);
-            //groceriesRepository.DeleteById(5);
-            groceriesRepository.UpdateById(6, product);
+            //GroceriesRepository groceriesRepository = new GroceriesRepository(connection);
+            ////groceriesRepository.DeleteById(5);
+            //groceriesRepository.UpdateById(6, product);
 
-            groceriesRepository.TestConnection();
+            //groceriesRepository.TestConnection();
 
         }
     }

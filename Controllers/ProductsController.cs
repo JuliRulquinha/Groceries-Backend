@@ -25,7 +25,7 @@ namespace Groceries.Controllers
 
             if (p is not null && p.id > 0)
             {
-                return $"{p.name} {p.description}";
+                return $"{p.Name} {p.Description}";
 
             }
             else
@@ -88,24 +88,24 @@ namespace Groceries.Controllers
             await repository.DeleteByIdUsingDapperAsync(id);
         }
 
-        [HttpPost("Products/Insert/List/{List<Products>}")]
+        [HttpPost("Products/Insert/List")]
 
-        public async Task SaveMultipleProducts([FromBody] List<Product> Products)
+        public async Task SaveMultipleProducts([FromBody] IEnumerable<Product> Products)
         {
-            List<Product> products = new List<Product>
-            {
-            new Product("Laptop", "https://example.com/laptop.jpg", "High performance laptop", 1200.99m, 5, true, 1),
-            new Product("Smartphone", "https://example.com/smartphone.jpg", "Latest model smartphone", 799.49m, 10, true, 1),
-            new Product("Headphones", null, "Wireless noise-cancelling headphones", 199.99m, 25, true, 1),
-            new Product("Smartwatch", "https://example.com/smartwatch.jpg", "Fitness tracking smartwatch", 149.99m, 15, false, 1),
-            new Product("Tablet", null, "10-inch tablet with stylus support", 499.00m, 8, true, 1)
-            };
+            //List<Product> products = new List<Product>
+            //{
+            //new Product("Laptop", "https://example.com/laptop.jpg", "High performance laptop", 1200.99m, 5, true, 1),
+            //new Product("Smartphone", "https://example.com/smartphone.jpg", "Latest model smartphone", 799.49m, 10, true, 1),
+            //new Product("Headphones", null, "Wireless noise-cancelling headphones", 199.99m, 25, true, 1),
+            //new Product("Smartwatch", "https://example.com/smartwatch.jpg", "Fitness tracking smartwatch", 149.99m, 15, false, 1),
+            //new Product("Tablet", null, "10-inch tablet with stylus support", 499.00m, 8, true, 1)
+            //};
 
             SqlConnection connection = new SqlConnection("Server=localhost;Database=Groceries;Trusted_Connection=True;");
 
             var repository = new GroceriesRepository(connection);
 
-            await repository.SaveListOfProductsWithDapperAsync(Products);
+            await repository.SaveListOfProductsWithDapperAsync(Products.ToList());
         }
 
     }

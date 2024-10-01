@@ -71,8 +71,8 @@ namespace Groceries
 
                 while (reader.Read())
                 {
-                    p.name = reader["name"].ToString();
-                    p.description = reader["Description"].ToString();
+                    p.Name = reader["name"].ToString();
+                    p.Description = reader["Description"].ToString();
                     p.id = Convert.ToInt32(reader["id"]);
                 }
 
@@ -97,12 +97,12 @@ namespace Groceries
                 string commandText = $"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES(@Name, @imgUrl, @Description, @Price, @Quantity, @categoryID ) ";
                 _command = _connection.CreateCommand();
                 _command.CommandText = commandText;
-                _command.Parameters.AddWithValue("@name", p.name);
-                _command.Parameters.AddWithValue("@imgUrl", p.imgUrl);
-                _command.Parameters.AddWithValue("@Description", p.description);
-                _command.Parameters.AddWithValue("@price", p.price);
-                _command.Parameters.AddWithValue("@quantity", p.quantity);
-                _command.Parameters.AddWithValue("@categoryID", p.categoryId);
+                _command.Parameters.AddWithValue("@name", p.Name);
+                _command.Parameters.AddWithValue("@imgUrl", p.ImgUrl);
+                _command.Parameters.AddWithValue("@Description", p.Description);
+                _command.Parameters.AddWithValue("@price", p.Price);
+                _command.Parameters.AddWithValue("@quantity", p.Quantity);
+                _command.Parameters.AddWithValue("@categoryID", p.CategoryId);
                 var result = _command.ExecuteNonQuery();
 
                 if (result == 0)
@@ -193,12 +193,12 @@ namespace Groceries
                 string commandText = $"UPDATE Products SET Name=@Name,imgUrl=@imgUrl,Description= @Description,Price= @Price,Quantity= @Quantity,categoryID= @categoryID WHERE id=@id";
                 _command = _connection.CreateCommand();
                 _command.CommandText = commandText;
-                _command.Parameters.AddWithValue("@name", updatedProduct.name);
-                _command.Parameters.AddWithValue("@imgUrl", updatedProduct.imgUrl);
-                _command.Parameters.AddWithValue("@Description", updatedProduct.description);
-                _command.Parameters.AddWithValue("@price", updatedProduct.price);
-                _command.Parameters.AddWithValue("@quantity", updatedProduct.quantity);
-                _command.Parameters.AddWithValue("@categoryID", updatedProduct.categoryId);
+                _command.Parameters.AddWithValue("@name", updatedProduct.Name);
+                _command.Parameters.AddWithValue("@imgUrl", updatedProduct.ImgUrl);
+                _command.Parameters.AddWithValue("@Description", updatedProduct.Description);
+                _command.Parameters.AddWithValue("@price", updatedProduct.Price);
+                _command.Parameters.AddWithValue("@quantity", updatedProduct.Quantity);
+                _command.Parameters.AddWithValue("@categoryID", updatedProduct.CategoryId);
                 _command.Parameters.AddWithValue("@id", id);
 
                 var result = _command.ExecuteNonQuery();
@@ -270,14 +270,14 @@ namespace Groceries
                     var isAvailable = false;
 
                     p.id = Convert.ToInt32(reader["id"]);
-                    p.name = reader["name"].ToString();
-                    p.price = Convert.ToDecimal(reader["price"]);
-                    p.imgUrl = reader["imgUrl"].ToString();
-                    p.description = reader["Description"].ToString();
+                    p.Name = reader["name"].ToString();
+                    p.Price = Convert.ToDecimal(reader["price"]);
+                    p.ImgUrl = reader["imgUrl"].ToString();
+                    p.Description = reader["Description"].ToString();
                     Boolean.TryParse(reader["isAvailable"].ToString(), out isAvailable);
-                    p.isAvailable = isAvailable;
-                    p.categoryId = Convert.ToInt32(reader["categoryId"]);
-                    p.quantity = Convert.ToInt32(reader["quantity"]);
+                    p.IsAvailable = isAvailable;
+                    p.CategoryId = Convert.ToInt32(reader["categoryId"]);
+                    p.Quantity = Convert.ToInt32(reader["quantity"]);
 
 
                     products.Add(p);
@@ -435,9 +435,19 @@ namespace Groceries
             try
             {
                 _connection.Open();
+                
+                List<Product> validProducts = new List<Product>();
+
+                foreach (var product in Products) 
+                {
+                    if(product.IsValid == true) 
+                    { 
+                        validProducts.Add(product);
+                    }
+                }
 
                 //string commandText = $"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES('{p.name}','{p.imgUrl}','{p.Description}',{p.price},{p.quantity}, {p.categoryId} ) ";
-                var result = await _connection.ExecuteAsync($"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES(@Name, @imgUrl, @Description, @Price, @Quantity, @categoryID )", Products);
+                var result = await _connection.ExecuteAsync($"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES(@Name, @imgUrl, @Description, @Price, @Quantity, @categoryID )", validProducts);
 
 
                 if (result == 0)
