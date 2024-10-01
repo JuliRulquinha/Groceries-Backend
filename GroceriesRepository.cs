@@ -46,7 +46,7 @@ namespace Groceries
             {
                 _connection.Open();
 
-               return _connection.QuerySingle<Product>($"SELECT * FROM Products WHERE Name like '{name}'");
+                return _connection.QuerySingle<Product>($"SELECT * FROM Products WHERE Name like '{name}'");
 
             }
             catch (Exception ex)
@@ -72,7 +72,7 @@ namespace Groceries
                 while (reader.Read())
                 {
                     p.name = reader["name"].ToString();
-                    p.Description = reader["Description"].ToString();
+                    p.description = reader["Description"].ToString();
                     p.id = Convert.ToInt32(reader["id"]);
                 }
 
@@ -98,8 +98,8 @@ namespace Groceries
                 _command = _connection.CreateCommand();
                 _command.CommandText = commandText;
                 _command.Parameters.AddWithValue("@name", p.name);
-                _command.Parameters.AddWithValue("@imgUrl", p.imgUrl); 
-                _command.Parameters.AddWithValue("@Description", p.Description);
+                _command.Parameters.AddWithValue("@imgUrl", p.imgUrl);
+                _command.Parameters.AddWithValue("@Description", p.description);
                 _command.Parameters.AddWithValue("@price", p.price);
                 _command.Parameters.AddWithValue("@quantity", p.quantity);
                 _command.Parameters.AddWithValue("@categoryID", p.categoryId);
@@ -133,7 +133,7 @@ namespace Groceries
                 _connection.Open();
 
                 //string commandText = $"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES('{p.name}','{p.imgUrl}','{p.Description}',{p.price},{p.quantity}, {p.categoryId} ) ";
-                var result = await _connection.ExecuteAsync($"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES(@Name, @imgUrl, @Description, @Price, @Quantity, @categoryID ) ", p); 
+                var result = await _connection.ExecuteAsync($"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES(@Name, @imgUrl, @Description, @Price, @Quantity, @categoryID ) ", p);
 
 
                 if (result == 0)
@@ -172,7 +172,7 @@ namespace Groceries
                 {
                     Console.WriteLine("The request failed.");
                 }
-                else 
+                else
                 {
                     Console.WriteLine($"Number of rows targeted: {output}");
                 }
@@ -190,16 +190,24 @@ namespace Groceries
             {
                 _connection.Open();
 
-                string commandText = $"UPDATE Products SET Name='{updatedProduct.name}',imgUrl='{updatedProduct.imgUrl}',Description='{updatedProduct.Description}',Price={updatedProduct.price},Quantity={updatedProduct.quantity},categoryID={updatedProduct.categoryId} WHERE id={id}";
+                string commandText = $"UPDATE Products SET Name=@Name,imgUrl=@imgUrl,Description= @Description,Price= @Price,Quantity= @Quantity,categoryID= @categoryID WHERE id=@id";
                 _command = _connection.CreateCommand();
                 _command.CommandText = commandText;
+                _command.Parameters.AddWithValue("@name", updatedProduct.name);
+                _command.Parameters.AddWithValue("@imgUrl", updatedProduct.imgUrl);
+                _command.Parameters.AddWithValue("@Description", updatedProduct.description);
+                _command.Parameters.AddWithValue("@price", updatedProduct.price);
+                _command.Parameters.AddWithValue("@quantity", updatedProduct.quantity);
+                _command.Parameters.AddWithValue("@categoryID", updatedProduct.categoryId);
+                _command.Parameters.AddWithValue("@id", id);
+
                 var result = _command.ExecuteNonQuery();
 
                 if (result == 0)
                 {
                     Console.WriteLine("The request failed.");
                 }
-                else 
+                else
                 {
                     Console.WriteLine($"Updated rows: {result}");
                 }
@@ -218,9 +226,11 @@ namespace Groceries
             {
                 _connection.Open();
 
-                string commandText = $"DELETE FROM Products WHERE id={id}";
+                string commandText = $"DELETE FROM Products WHERE id=@id";
                 _command = _connection.CreateCommand();
                 _command.CommandText = commandText;
+                _command.Parameters.AddWithValue(@"id", id);
+
                 var numberOfRowsAffected = _command.ExecuteNonQuery();
 
                 if (numberOfRowsAffected == 0)
@@ -237,10 +247,10 @@ namespace Groceries
                 Console.WriteLine(ex.Message);
             }
 
-            
+
         }
 
-        public IEnumerable<Product> GetProductsByCategoryId(int categoryId) 
+        public IEnumerable<Product> GetProductsByCategoryId(int categoryId)
         {
             List<Product> products = new List<Product>();
 
@@ -254,7 +264,8 @@ namespace Groceries
 
                 var reader = command.ExecuteReader();
 
-                while (reader.Read()) {
+                while (reader.Read())
+                {
                     var p = new Product();
                     var isAvailable = false;
 
@@ -262,8 +273,8 @@ namespace Groceries
                     p.name = reader["name"].ToString();
                     p.price = Convert.ToDecimal(reader["price"]);
                     p.imgUrl = reader["imgUrl"].ToString();
-                    p.Description = reader["Description"].ToString();
-                    Boolean.TryParse( reader["isAvailable"].ToString() ,out isAvailable);
+                    p.description = reader["Description"].ToString();
+                    Boolean.TryParse(reader["isAvailable"].ToString(), out isAvailable);
                     p.isAvailable = isAvailable;
                     p.categoryId = Convert.ToInt32(reader["categoryId"]);
                     p.quantity = Convert.ToInt32(reader["quantity"]);
@@ -298,6 +309,157 @@ namespace Groceries
             return null;
         }
 
-        
+        public void UpdateByIdUsingDapper(int id, Product updatedProduct)
+        {
+            try
+            {
+                _connection.Open();
+
+                string commandText = $"UPDATE Products SET Name=@Name,imgUrl=@imgUrl,Description= @Description,Price= @Price,Quantity= @Quantity,categoryID= @categoryID WHERE id=@id";
+                _command = _connection.CreateCommand();
+                _command.CommandText = commandText;
+
+
+                var result = _connection.Execute(commandText, updatedProduct);
+
+                if (result == 0)
+                {
+                    Console.WriteLine("The request failed.");
+                }
+                else
+                {
+                    Console.WriteLine($"Updated rows: {result}");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
+        public async Task UpdateByIdUsingDapperAsync<Product>(Product updatedProduct)
+        {
+            try
+            {
+                _connection.Open();
+
+                string commandText = $"UPDATE Products SET Name=@Name,imgUrl=@imgUrl,Description= @Description,Price= @Price,Quantity= @Quantity,categoryID= @categoryID WHERE id=@id";
+                _command = _connection.CreateCommand();
+                _command.CommandText = commandText;
+
+
+                var result = await _connection.ExecuteAsync(commandText, updatedProduct);
+
+                if (result == 0)
+                {
+                    Console.WriteLine("The request failed.");
+                }
+                else
+                {
+                    Console.WriteLine($"Updated rows: {result}");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
+        public void DeleteByIdUsingDapper(int id)
+        {
+
+            try
+            {
+                _connection.Open();
+
+                string commandText = $"DELETE FROM Products WHERE id=@id";
+                _command = _connection.CreateCommand();
+                _command.CommandText = commandText;
+
+
+                var numberOfRowsAffected = _connection.Execute(commandText, id);
+
+                if (numberOfRowsAffected == 0)
+                {
+                    Console.WriteLine("No records were deleted.");
+                }
+                else
+                {
+                    Console.WriteLine($"{numberOfRowsAffected} rows were affected.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
+        public async Task DeleteByIdUsingDapperAsync(int id)
+        {
+
+            try
+            {
+                _connection.Open();
+
+                string commandText = $"DELETE FROM Products WHERE id={id}";
+                _command = _connection.CreateCommand();
+                _command.CommandText = commandText;
+
+
+                var numberOfRowsAffected = await _connection.ExecuteAsync(commandText);
+
+                if (numberOfRowsAffected == 0)
+                {
+                    Console.WriteLine("No records were deleted.");
+                }
+                else
+                {
+                    Console.WriteLine($"{numberOfRowsAffected} rows were affected.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
+        public async Task<bool> SaveListOfProductsWithDapperAsync(List<Product> Products)
+        {
+
+            try
+            {
+                _connection.Open();
+
+                //string commandText = $"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES('{p.name}','{p.imgUrl}','{p.Description}',{p.price},{p.quantity}, {p.categoryId} ) ";
+                var result = await _connection.ExecuteAsync($"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES(@Name, @imgUrl, @Description, @Price, @Quantity, @categoryID )", Products);
+
+
+                if (result == 0)
+                {
+                    Console.WriteLine("The insertion command failed to excute.");
+
+                }
+                else
+                {
+                    Console.WriteLine($"Inserted items: {result}");
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return true;
+        }
     }
+
+
 }

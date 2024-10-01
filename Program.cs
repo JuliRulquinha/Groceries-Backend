@@ -37,7 +37,7 @@ namespace Groceries
             Product product = new Product();
             product.name = "Test2";
             product.imgUrl = "not even an image";
-            product.Description = "Description";
+            product.description = "Description";
             product.price = 5000;
             product.quantity = 1;
             product.categoryId = 1;
