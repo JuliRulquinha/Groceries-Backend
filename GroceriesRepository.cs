@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
-using Microsoft.SqlServer.Server;
+﻿using System.Data.SqlClient;
 using Dapper;
-using System.Security.Cryptography.X509Certificates;
-using System.Xml.Linq;
+using Groceries.Extensions;
 
 
 
@@ -325,6 +318,7 @@ namespace Groceries
                 if (result == 0)
                 {
                     Console.WriteLine("The request failed.");
+                    Console.WriteLine(updatedProduct.FakeAssMethod());
                 }
                 else
                 {
@@ -435,16 +429,21 @@ namespace Groceries
             try
             {
                 _connection.Open();
-                
-                List<Product> validProducts = new List<Product>();
 
-                foreach (var product in Products) 
-                {
-                    if(product.IsValid == true) 
-                    { 
-                        validProducts.Add(product);
-                    }
-                }
+                var validProducts = Products.Where(p => p.IsValid);
+
+                //foreach (var product in Products)
+                //{
+                //    if (product.IsValid)
+                //    {
+                //        validProducts.Add(product);
+                //    }
+                //}
+
+                // which one is better ?
+
+
+
 
                 //string commandText = $"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES('{p.name}','{p.imgUrl}','{p.Description}',{p.price},{p.quantity}, {p.categoryId} ) ";
                 var result = await _connection.ExecuteAsync($"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES(@Name, @imgUrl, @Description, @Price, @Quantity, @categoryID )", validProducts);

@@ -11,7 +11,10 @@
         public bool? IsAvailable { get; set; }
         public int CategoryId { get; set; }
 
-        public bool IsValid = true;
+        public bool IsValid { get 
+            { 
+                return !string.IsNullOrWhiteSpace(this.Name);
+            } set { IsValid = value; } } 
 
         public Product(string name, string? imgUrl, string description, decimal price, int quantity, bool? isAvailable, int categoryId)
         {
@@ -21,36 +24,13 @@
             this.Price = price;
             this.Quantity = quantity;
             this.IsAvailable = isAvailable;
-            this.CategoryId = categoryId;
-
+            this.CategoryId = categoryId;           
         }
-
+       
         public Product()
         {
-            Validate();
-        }
-        public Product(string name)
-        {
-            this.Name = name;
-
-            Validate();
-
-        }
-        private void Validate()
-        {
-            if (Name is null)
-            {
-                IsValid = false;
-            }
-            else if (Name is not null)
-            {
-                {
-                    IsValid = true;
-                }
-            }
-
-        }
-
+           
+        }               
     }
 }
 

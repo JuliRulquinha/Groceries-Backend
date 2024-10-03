@@ -1,5 +1,8 @@
 
+using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Groceries
 {
@@ -7,32 +10,32 @@ namespace Groceries
     {
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            //var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            //// Add services to the container.
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            //builder.Services.AddControllers();
+            //// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            //builder.Services.AddEndpointsApiExplorer();
+            //builder.Services.AddSwaggerGen();
 
-            var app = builder.Build();
+            //var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            //// Configure the HTTP request pipeline.
+            //if (app.Environment.IsDevelopment())
+            //{
+            //    app.UseSwagger();
+            //    app.UseSwaggerUI();
+            //}
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
 
-            app.MapControllers();
+            //app.MapControllers();
 
-            app.Run();
+            //app.Run();
 
             //Product product = new Product();
             //product.name = "Test2";
@@ -50,6 +53,25 @@ namespace Groceries
 
             //groceriesRepository.TestConnection();
 
+            //Category category = new Category();
+            //var categoryRepository = new CategoryRepository();
+            
+            IEnumerable<string> Fruits = new List<string>{"apple","banana","cherry","date","elderberry","fig","grape","honeydew","kiwi","lemon","mango","nectarine","orange","papaya","quince","raspberry","strawberry","tangerine","watermelon","zucchini" };
+
+            var firstFruit = Fruits.Average(f => f.Length);
+
+            //foreach (var f in firstFruit)
+            //{
+                Console.WriteLine(firstFruit); 
+           // }
+
+            //var littleFruits =  from f in Fruits where f.Length < 4 select f;
+
+            //foreach ( var little in littleFruits ) { Console.WriteLine( little ); }
+
+            var bigFruits = (from f in Fruits where f.Length > 4 select f).ToList().First();
+
+            foreach (var big in bigFruits) { Console.WriteLine(big); }
         }
     }
 }
