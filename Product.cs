@@ -1,4 +1,7 @@
-﻿namespace Groceries
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
+
+namespace Groceries
 {
     public class Product
     {
@@ -11,6 +14,8 @@
         public bool? IsAvailable { get; set; }
         public int CategoryId { get; set; }
 
+        [NotMapped]
+        [JsonIgnore]
         public bool IsValid { get 
             { 
                 return !string.IsNullOrWhiteSpace(this.Name);

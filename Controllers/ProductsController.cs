@@ -14,6 +14,11 @@ namespace Groceries.Controllers
     [Route("[controller]")]
     public class ProductsController : Controller
     {
+        private readonly IGroceriesRepository _repository;
+        public ProductsController(IGroceriesRepository repository)
+        {
+            _repository = repository;           
+        }
         [HttpGet("SayHello")]
 
         public string Hello()
@@ -22,16 +27,13 @@ namespace Groceries.Controllers
         }
         [HttpGet("Products/{productName}")]
         public string GetProductByName(string productName)
-        {
-            SqlConnection connection = new SqlConnection("Server=localhost;Database=Groceries;Trusted_Connection=True;");
-
-            GroceriesRepository productRepository = new GroceriesRepository(connection);
-            var p = productRepository.GetProductByNameUsingDapper(productName);
+        { 
+            
+            var p = _repository.GetProductByName(productName);
 
             if (p is not null && p.id > 0)
             {
                 return $"{p.Name} {p.Description}";
-
             }
             else
             {
@@ -61,14 +63,9 @@ namespace Groceries.Controllers
 
         [HttpPost("Products")]
 
-        public async Task CreateProduct([FromBody] Product product)
+        public Task CreateProduct([FromBody] Product product)
         {
-            SqlConnection connection = new SqlConnection("Server=localhost;Database=Groceries;Trusted_Connection=True;");
-
-            var repository = new GroceriesRepository(connection);
-
-
-            await repository.SaveWithDapper(product);
+            return Task.Run(() => _repository.Save(product));
         }
 
         [HttpPut("Products/Update/{id}")]

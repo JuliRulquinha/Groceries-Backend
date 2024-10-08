@@ -7,10 +7,11 @@ using Groceries.Extensions;
 
 namespace Groceries
 {
-    public class GroceriesRepository
+    public class GroceriesRepository : IGroceriesRepository
     {
         private readonly SqlConnection _connection;
         private SqlCommand _command;
+
 
         public GroceriesRepository(SqlConnection connection)
         {
