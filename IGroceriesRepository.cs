@@ -14,9 +14,10 @@ namespace Groceries
         bool Save(Product p);
         //Task<bool> SaveListOfProductsWithDapperAsync(List<Product> Products);
         //Task<bool> SaveWithDapper(Product p);
-        bool TestConnection();
+        //bool TestConnection();
         void UpdateById(int id, Product updatedProduct);
-       // void UpdateByIdUsingDapper(int id, Product updatedProduct);
-       // Task UpdateByIdUsingDapperAsync<Product>(Product updatedProduct);
+        // void UpdateByIdUsingDapper(int id, Product updatedProduct);
+        // Task UpdateByIdUsingDapperAsync<Product>(Product updatedProduct);
+        Task<bool> SaveListOfProducts(List<Product> Products);
     }
 }

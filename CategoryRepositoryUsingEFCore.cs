@@ -2,6 +2,13 @@
 {
     public class CategoryRepositoryUsingEFCore : ICategoryRepository
     {
+        private readonly MyFirstContext _context;
+
+        public CategoryRepositoryUsingEFCore(MyFirstContext context)
+        {
+            _context = context;
+        }
+
         public void DeleteCategoryById(int id)
         {
             throw new NotImplementedException();
@@ -12,7 +19,7 @@
             throw new NotImplementedException();
         }
 
-        public Category GetCategoryByName(Category category)
+        public Category GetCategoryByName(string name)
         {
             throw new NotImplementedException();
         }

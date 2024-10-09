@@ -1,4 +1,5 @@
 
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -16,11 +17,13 @@ namespace Groceries
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddDbContext<MyFirstContext>(options => options.UseSqlServer("Server=localhost;Database=Groceries;Trusted_Connection=True;TrustServerCertificate=True"));
+            
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddSingleton<SqlConnection>((_) => new SqlConnection("Server=localhost;Database=Groceries;Trusted_Connection=True;"));
-            builder.Services.AddSingleton<IGroceriesRepository, InMemoryGroceriesRepository>();
+            //builder.Services.AddSingleton<SqlConnection>((_) => new SqlConnection("Server=localhost;Database=Groceries;Trusted_Connection=True;"));
+            builder.Services.AddScoped<IGroceriesRepository, GroceriesRepositoryUsingEFCore>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -73,7 +76,7 @@ namespace Groceries
 
             //var bigFruits = (from f in Fruits where f.Length > 4 select f).ToList().First();
 
-            var dB = new MyFirstContext();
+            //var dB = new MyFirstContext();
 
             //var product = new Product()
             //{
@@ -94,8 +97,8 @@ namespace Groceries
             //    Console.WriteLine(p.Name);
             //}
 
-            var firstProduct = dB.Products.Where(p => p.Price > 0 && p.Price<100).First();
-            Console.WriteLine(firstProduct.Price);
+            //var firstProduct = dB.Products.Where(p => p.Price > 0 && p.Price<100).First();
+            //Console.WriteLine(firstProduct.Price);
 
         }
     }

@@ -424,7 +424,7 @@ namespace Groceries
 
         }
 
-        public async Task<bool> SaveListOfProductsWithDapperAsync(List<Product> Products)
+        public Task<bool> SaveListOfProducts(List<Product> Products)
         {
 
             try
@@ -447,7 +447,7 @@ namespace Groceries
 
 
                 //string commandText = $"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES('{p.name}','{p.imgUrl}','{p.Description}',{p.price},{p.quantity}, {p.categoryId} ) ";
-                var result = await _connection.ExecuteAsync($"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES(@Name, @imgUrl, @Description, @Price, @Quantity, @categoryID )", validProducts);
+                var result =  _connection.Execute($"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES(@Name, @imgUrl, @Description, @Price, @Quantity, @categoryID )", validProducts);
 
 
                 if (result == 0)

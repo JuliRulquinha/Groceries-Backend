@@ -4,7 +4,7 @@
     {
         void DeleteCategoryById(int id);
         Category GetCategoryById(int id);
-        Category GetCategoryByName(Category category);
+        Category GetCategoryByName(string name);
         Category UpdateCategoryById(int id, Category updatedCategory);
     }
 }

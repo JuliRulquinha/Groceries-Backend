@@ -1,11 +1,11 @@
 ﻿
+using Groceries.Extensions;
 using System.Data.SqlClient;
 using Dapper;
-using Groceries.Extensions;
 
 namespace Groceries
 {
-    public class GroceriesRepositoryUsingDapper : IGroceriesRepository
+    public class InMemoryGroceriesRepositoryUsingDapper : IGroceriesRepository
     {
         private readonly SqlConnection _connection;
         private SqlCommand _command;
@@ -78,7 +78,7 @@ namespace Groceries
                 _connection.Open();
 
                 return _connection.Query<Product>($"SELECT * FROM Products WHERE categoryID={categoryId}");
-               
+
 
             }
             catch (Exception ex)

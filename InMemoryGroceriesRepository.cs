@@ -1,8 +1,13 @@
 ﻿
+using System.Data.SqlClient;
+
 namespace Groceries
 {
     public class InMemoryGroceriesRepository : IGroceriesRepository
     {
+        private readonly SqlConnection _connection;
+        private SqlCommand _command;
+
         private List<Product> products;
         public InMemoryGroceriesRepository()
         {

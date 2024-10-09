@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using Groceries.DTO;
+using Mapster;
 
 
 namespace Groceries.Controllers
@@ -50,12 +52,8 @@ namespace Groceries.Controllers
 
             GroceriesRepository productRepository = new GroceriesRepository(connection);
 
-            Stopwatch stopwatch = new Stopwatch();
-
-            stopwatch.Start();
+           
             var products = await productRepository.GetProductsByCategoryIdUsingDapperAsync(categoryId);
-            stopwatch.Stop();
-            Console.WriteLine(stopwatch.ElapsedMilliseconds);
 
             return products;
 
@@ -63,31 +61,27 @@ namespace Groceries.Controllers
 
         [HttpPost("Products")]
 
-        public Task CreateProduct([FromBody] Product product)
+
+        public Task CreateProduct([FromBody] ProductDto dto)
         {
+            var product = dto.Adapt<Product>();
             return Task.Run(() => _repository.Save(product));
         }
 
         [HttpPut("Products/Update/{id}")]
 
-        public async Task UpdateProduct([FromBody]Product updatedProduct)
+        public void UpdateProduct([FromBody]ProductDto dto, int id)
         {
-            SqlConnection connection = new SqlConnection("Server=localhost;Database=Groceries;Trusted_Connection=True;");
-
-            var repository = new GroceriesRepository(connection);
-
-            await repository.UpdateByIdUsingDapperAsync<Product>(updatedProduct);
+            var updatedProduct = dto.Adapt<Product>();
+            _repository.UpdateById(id,updatedProduct);
         }
 
         [HttpDelete("Products/Delete/{id}")]
 
-        public async Task DeleteProduct(int id)
+        public void DeleteProduct(int id)
         {
-            SqlConnection connection = new SqlConnection("Server=localhost;Database=Groceries;Trusted_Connection=True;");
-
-            var repository = new GroceriesRepository(connection);
-
-            await repository.DeleteByIdUsingDapperAsync(id);
+           
+           _repository.DeleteById(id);
         }
 
         [HttpPost("Products/Insert/List")]
@@ -107,7 +101,7 @@ namespace Groceries.Controllers
 
             var repository = new GroceriesRepository(connection);
 
-            await repository.SaveListOfProductsWithDapperAsync(Products.ToList());
+            await repository.SaveListOfProducts(Products.ToList());
         }
 
     }

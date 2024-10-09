@@ -1,41 +1,103 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
+
 namespace Groceries
 {
     public class GroceriesRepositoryUsingEFCore : IGroceriesRepository
     {
+        private readonly MyFirstContext _context;
+
+        public GroceriesRepositoryUsingEFCore(MyFirstContext context)
+        {
+            _context = context;
+        }
         public void DeleteById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var deletedItems = _context.Products.Where(p => p.id == id).ExecuteDelete();
+
+                if (deletedItems == 0)
+                {
+                    Console.WriteLine($"{deletedItems} records were deleted. Execution failed.");
+                }
+                else
+                {
+                    Console.WriteLine($"Rows affected: {deletedItems}.");
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public Product GetById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _context.Products.FirstOrDefault(p => p.id == id);
+               
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);           
+            }
+            return null;
         }
 
         public Product GetProductByName(string name)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _context.Products.FirstOrDefault(p => p.Name.Equals(name));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
         }
 
         public IEnumerable<Product> GetProductsByCategoryId(int categoryId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Products.Where(p => p.CategoryId == categoryId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
         }
 
         public bool Save(Product p)
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                _context.Products.Add(p);
+                return _context.SaveChanges() > 0;
 
-        public bool TestConnection()
-        {
-            throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
         }
 
         public void UpdateById(int id, Product updatedProduct)
         {
-            throw new NotImplementedException();
+            var productFromDb = GetById(id);
+            productFromDb.Name = updatedProduct.Name;
+            productFromDb.ImgUrl = updatedProduct.ImgUrl;
+            productFromDb.Description = updatedProduct.Description;
+            productFromDb.Price = updatedProduct.Price;
+            productFromDb.Quantity = updatedProduct.Quantity;
+
+            _context.SaveChanges();
         }
     }
 }

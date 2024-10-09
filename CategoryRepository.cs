@@ -43,13 +43,13 @@ public class CategoryRepository : ICategoryRepository
         return null;
     }
 
-    public Category GetCategoryByName(Category category)
+    public Category GetCategoryByName(string name)
     {
         connection.Open();
 
         string commandText = $"SELECT * FROM Category WHERE name=@name";
         command.CommandText = commandText;
-        command.Parameters.AddWithValue("@name", category.Name);
+        command.Parameters.AddWithValue("@name", name);
         var result = command.ExecuteNonQuery();
 
         if (result != 0)

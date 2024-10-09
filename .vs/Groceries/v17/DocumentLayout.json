@@ -3,28 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|c:\\users\\w1021h2\\source\\repos\\groceries\\groceriesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|solutionrelative:groceriesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|c:\\users\\w1021h2\\source\\repos\\groceries\\igroceriesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|solutionrelative:igroceriesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|c:\\users\\w1021h2\\source\\repos\\groceries\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|solutionrelative:controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|c:\\users\\w1021h2\\source\\repos\\groceries\\inmemorygroceriesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|solutionrelative:inmemorygroceriesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|c:\\users\\w1021h2\\source\\repos\\groceries\\dto\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|solutionrelative:dto\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|c:\\users\\w1021h2\\source\\repos\\groceries\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|solutionrelative:product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|c:\\users\\w1021h2\\source\\repos\\groceries\\myfirstcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|solutionrelative:myfirstcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|c:\\users\\w1021h2\\source\\repos\\groceries\\groceriesrepositoryusingefcore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|solutionrelative:groceriesrepositoryusingefcore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|c:\\users\\w1021h2\\source\\repos\\groceries\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|c:\\users\\w1021h2\\source\\repos\\groceries\\groceriesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|solutionrelative:groceriesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|c:\\users\\w1021h2\\source\\repos\\groceries\\myfirstcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA10EE7B-F4D6-45CF-96D4-0AC4E99802AA}|Groceries.csproj|solutionrelative:myfirstcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,30 +46,29 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GroceriesRepository.cs",
-              "DocumentMoniker": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\GroceriesRepository.cs",
-              "RelativeDocumentMoniker": "GroceriesRepository.cs",
-              "ToolTip": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\GroceriesRepository.cs",
-              "RelativeToolTip": "GroceriesRepository.cs",
-              "ViewState": "AQIAAHIAAAAAAAAAAAAawJ8AAABLAAAA",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAawBMAAACyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-27T18:37:28.617Z",
+              "WhenOpened": "2024-10-08T20:36:28.339Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MyFirstContext.cs",
-              "DocumentMoniker": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\MyFirstContext.cs",
-              "RelativeDocumentMoniker": "MyFirstContext.cs",
-              "ToolTip": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\MyFirstContext.cs",
-              "RelativeToolTip": "MyFirstContext.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+              "DocumentIndex": 1,
+              "Title": "IGroceriesRepository.cs",
+              "DocumentMoniker": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\IGroceriesRepository.cs",
+              "RelativeDocumentMoniker": "IGroceriesRepository.cs",
+              "ToolTip": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\IGroceriesRepository.cs",
+              "RelativeToolTip": "IGroceriesRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T18:08:22.847Z",
-              "IsPinned": true,
+              "WhenOpened": "2024-10-09T20:43:12.058Z",
               "EditorCaption": ""
             },
             {
@@ -70,54 +77,80 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAABIAAAA",
+              "DocumentIndex": 3,
+              "Title": "ProductDto.cs",
+              "DocumentMoniker": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\DTO\\ProductDto.cs",
+              "RelativeDocumentMoniker": "DTO\\ProductDto.cs",
+              "ToolTip": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\DTO\\ProductDto.cs",
+              "RelativeToolTip": "DTO\\ProductDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T20:36:28.339Z",
+              "WhenOpened": "2024-10-09T20:24:52.837Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "InMemoryGroceriesRepository.cs",
-              "DocumentMoniker": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\InMemoryGroceriesRepository.cs",
-              "RelativeDocumentMoniker": "InMemoryGroceriesRepository.cs",
-              "ToolTip": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\InMemoryGroceriesRepository.cs",
-              "RelativeToolTip": "InMemoryGroceriesRepository.cs",
-              "ViewState": "AQIAAB0AAAAAAAAAAAAvwC0AAAAIAAAA",
+              "DocumentIndex": 5,
+              "Title": "GroceriesRepositoryUsingEFCore.cs",
+              "DocumentMoniker": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\GroceriesRepositoryUsingEFCore.cs",
+              "RelativeDocumentMoniker": "GroceriesRepositoryUsingEFCore.cs",
+              "ToolTip": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\GroceriesRepositoryUsingEFCore.cs",
+              "RelativeToolTip": "GroceriesRepositoryUsingEFCore.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAvwBkAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T19:50:46.606Z",
+              "WhenOpened": "2024-10-09T19:42:52.073Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Product.cs",
-              "DocumentMoniker": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\Product.cs",
-              "RelativeDocumentMoniker": "Product.cs",
-              "ToolTip": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\Product.cs",
-              "RelativeToolTip": "Product.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAgwBEAAAAUAAAA",
+              "DocumentIndex": 7,
+              "Title": "MyFirstContext.cs",
+              "DocumentMoniker": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\MyFirstContext.cs",
+              "RelativeDocumentMoniker": "MyFirstContext.cs",
+              "ToolTip": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\MyFirstContext.cs",
+              "RelativeToolTip": "MyFirstContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T19:34:38.074Z",
+              "WhenOpened": "2024-10-09T19:34:03.432Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "GroceriesRepository.cs",
+              "DocumentMoniker": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\GroceriesRepository.cs",
+              "RelativeDocumentMoniker": "GroceriesRepository.cs",
+              "ToolTip": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\GroceriesRepository.cs",
+              "RelativeToolTip": "GroceriesRepository.cs",
+              "ViewState": "AQIAAJ4BAAAAAAAAAAAAAKgBAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T19:33:12.237Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\Product.cs",
+              "RelativeDocumentMoniker": "Product.cs",
+              "ToolTip": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\Product.cs",
+              "RelativeToolTip": "Product.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAAAAwAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T19:33:12.296Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ProductsController.cs",
               "DocumentMoniker": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\Controllers\\ProductsController.cs",
               "RelativeDocumentMoniker": "Controllers\\ProductsController.cs",
               "ToolTip": "C:\\Users\\W1021H2\\source\\repos\\Groceries\\Controllers\\ProductsController.cs",
               "RelativeToolTip": "Controllers\\ProductsController.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAIA8wB8AAAA+AAAA",
+              "ViewState": "AQIAAE8AAAAAAAAAAAAcwFUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T18:39:10.576Z",
+              "WhenOpened": "2024-10-09T18:38:45.99Z",
               "EditorCaption": ""
             }
           ]
