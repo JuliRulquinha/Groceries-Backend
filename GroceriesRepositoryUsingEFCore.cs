@@ -99,5 +99,10 @@ namespace Groceries
 
             _context.SaveChanges();
         }
+
+        public Task<bool> SaveListOfProducts(List<Product> Products) 
+        {
+            throw new NotImplementedException();
+        }
     }
 }
