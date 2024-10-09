@@ -10,7 +10,7 @@ using Dapper;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.Linq;
 
-public class CategoryRepository
+public class CategoryRepository : ICategoryRepository
 {
 
     private readonly SqlConnection connection;
@@ -49,19 +49,19 @@ public class CategoryRepository
 
         string commandText = $"SELECT * FROM Category WHERE name=@name";
         command.CommandText = commandText;
-        command.Parameters.AddWithValue ("@name", category.Name);
+        command.Parameters.AddWithValue("@name", category.Name);
         var result = command.ExecuteNonQuery();
 
         if (result != 0)
         {
             Console.WriteLine($"{result} category was found.");
         }
-        else 
+        else
         {
             Console.WriteLine($"No categories were found.");
         }
 
-        return null; 
+        return null;
     }
 
     public void DeleteCategoryById(int id)
@@ -70,7 +70,7 @@ public class CategoryRepository
 
         string commandText = $"DELETE FROM Categories WHERE id=@id";
         command.CommandText += commandText;
-        command.Parameters.AddWithValue("@id",id);
+        command.Parameters.AddWithValue("@id", id);
         var result = command.ExecuteNonQuery();
 
         if (result != 0)
@@ -89,14 +89,14 @@ public class CategoryRepository
 
         string commandText = "UPDATE Category SET Name=@name WHERE id=@id";
         command.CommandText += commandText;
-        command.Parameters.AddWithValue("@name",updatedCategory.Name);
+        command.Parameters.AddWithValue("@name", updatedCategory.Name);
         var result = command.ExecuteNonQuery();
 
         if (result != 0)
         {
             Console.WriteLine($"Number of rows affected: {result}");
         }
-        else 
+        else
         {
             Console.WriteLine($"{result} items were updated");
         }
