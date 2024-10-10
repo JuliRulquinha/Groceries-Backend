@@ -73,11 +73,11 @@ namespace Groceries
             return null;
         }
 
-        public bool Save(Product p)
+        public bool Save(Product product)
         {
             try
             {
-                _context.Products.Add(p);
+                _context.Products.Add(product);
                 return _context.SaveChanges() > 0;
 
             }
@@ -101,6 +101,20 @@ namespace Groceries
         }
 
         public Task<bool> SaveListOfProducts(List<Product> Products) 
+        {
+            try
+            {
+                _context.Products.AddRange(Products);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+            
+        }
+        public IEnumerable<Product> GetAllProducts()
         {
             throw new NotImplementedException();
         }

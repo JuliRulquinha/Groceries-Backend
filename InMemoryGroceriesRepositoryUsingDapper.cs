@@ -118,6 +118,26 @@ namespace Groceries
             return true;
         }
 
+        public Task<bool> SaveListOfProducts(List<Product> Products)
+        {
+            _connection.Open();
+
+            var validProducts = Products.Where(p => p.IsValid);
+
+            var result = _connection.Execute($"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES(@Name, @imgUrl, @Description, @Price, @Quantity, @categoryID )", validProducts);
+
+
+            if (result == 0)
+            {
+                Console.WriteLine("The insertion command failed to excute.");
+
+            }
+            else
+            {
+                Console.WriteLine($"Inserted items: {result}");
+            }
+            return null;
+        }
 
         public void UpdateById(int id, Product updatedProduct)
         {
@@ -147,6 +167,10 @@ namespace Groceries
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+        public IEnumerable<Product> GetAllProducts()
+        {
+            throw new NotImplementedException();
         }
     }
 }

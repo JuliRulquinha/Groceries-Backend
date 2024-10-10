@@ -33,7 +33,22 @@ namespace Groceries
                 return false;
             }
         }
+        public IEnumerable<Product> GetAllProducts()
+        {
+            try
+            {
+                _connection.Open();
 
+                var products = _connection.Query<Product>("SELECT * FROM Products;");
+
+                return products;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
         public Product GetProductByNameUsingDapper(string name)
         {
             try
@@ -80,7 +95,7 @@ namespace Groceries
             return null;
 
         }
-        public bool Save(Product p)
+        public bool Save(Product product)
         {
 
             try
@@ -91,12 +106,12 @@ namespace Groceries
                 string commandText = $"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES(@Name, @imgUrl, @Description, @Price, @Quantity, @categoryID ) ";
                 _command = _connection.CreateCommand();
                 _command.CommandText = commandText;
-                _command.Parameters.AddWithValue("@name", p.Name);
-                _command.Parameters.AddWithValue("@imgUrl", p.ImgUrl);
-                _command.Parameters.AddWithValue("@Description", p.Description);
-                _command.Parameters.AddWithValue("@price", p.Price);
-                _command.Parameters.AddWithValue("@quantity", p.Quantity);
-                _command.Parameters.AddWithValue("@categoryID", p.CategoryId);
+                _command.Parameters.AddWithValue("@name", product.Name);
+                _command.Parameters.AddWithValue("@imgUrl", product.ImgUrl);
+                _command.Parameters.AddWithValue("@Description", product.Description);
+                _command.Parameters.AddWithValue("@price", product.Price);
+                _command.Parameters.AddWithValue("@quantity", product.Quantity);
+                _command.Parameters.AddWithValue("@categoryID", product.CategoryId);
                 var result = _command.ExecuteNonQuery();
 
                 if (result == 0)
@@ -467,7 +482,7 @@ namespace Groceries
                 Console.WriteLine(ex.Message);
             }
 
-            return true;
+            return null;
         }
     }
 

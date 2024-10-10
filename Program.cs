@@ -22,8 +22,8 @@ namespace Groceries
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            //builder.Services.AddSingleton<SqlConnection>((_) => new SqlConnection("Server=localhost;Database=Groceries;Trusted_Connection=True;"));
-            builder.Services.AddScoped<IGroceriesRepository, GroceriesRepositoryUsingEFCore>();
+            builder.Services.AddSingleton<SqlConnection>((_) => new SqlConnection("Server=localhost;Database=Groceries;Trusted_Connection=True;"));
+            builder.Services.AddScoped<IGroceriesRepository, GroceriesRepository>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

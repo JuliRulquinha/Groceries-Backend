@@ -37,6 +37,11 @@ namespace Groceries
             }
         }
 
+        public IEnumerable<Product> GetAllProducts()
+        {
+            throw new NotImplementedException();
+        }
+
         public Product GetById(int id)
         {
             try
@@ -88,14 +93,14 @@ namespace Groceries
             return null;
         }
 
-        public bool Save(Product p)
+        public bool Save(Product product)
         {
             try
             {
                 _connection.Open();
 
                 //string commandText = $"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES('{p.name}','{p.imgUrl}','{p.Description}',{p.price},{p.quantity}, {p.categoryId} ) ";
-                var result = _connection.Execute($"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES(@Name, @imgUrl, @Description, @Price, @Quantity, @categoryID ) ", p);
+                var result = _connection.Execute($"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES(@Name, @imgUrl, @Description, @Price, @Quantity, @categoryID ) ", product);
 
 
                 if (result == 0)
@@ -118,6 +123,36 @@ namespace Groceries
             return true;
         }
 
+        public Task<bool> SaveListOfProducts(List<Product> Products)
+        {
+            try
+            {
+                _connection.Open();
+
+                var validProducts = Products.Where(p => p.IsValid);
+
+                var result = _connection.Execute($"INSERT INTO Products(Name, imgUrl, Description, Price, Quantity, categoryID) VALUES(@Name, @imgUrl, @Description, @Price, @Quantity, @categoryID )", validProducts);
+
+
+                if (result == 0)
+                {
+                    Console.WriteLine("The insertion command failed to excute.");
+
+                }
+                else
+                {
+                    Console.WriteLine($"Inserted items: {result}");
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return null;
+        }
 
         public void UpdateById(int id, Product updatedProduct)
         {

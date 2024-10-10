@@ -11,7 +11,7 @@ namespace Groceries
         //Product GetProductByNameUsingDapper(string name);
         IEnumerable<Product> GetProductsByCategoryId(int categoryId);
         //Task<IEnumerable<Product>> GetProductsByCategoryIdUsingDapperAsync(int categoryId);
-        bool Save(Product p);
+        bool Save(Product product);
         //Task<bool> SaveListOfProductsWithDapperAsync(List<Product> Products);
         //Task<bool> SaveWithDapper(Product p);
         //bool TestConnection();
@@ -19,5 +19,6 @@ namespace Groceries
         // void UpdateByIdUsingDapper(int id, Product updatedProduct);
         // Task UpdateByIdUsingDapperAsync<Product>(Product updatedProduct);
         Task<bool> SaveListOfProducts(List<Product> Products);
+        IEnumerable<Product> GetAllProducts();
     }
 }

@@ -21,12 +21,14 @@ namespace Groceries.Controllers
         {
             _repository = repository;           
         }
-        [HttpGet("SayHello")]
+        [HttpGet("GetAllProducts")]
 
-        public string Hello()
+        public IActionResult GetAllProducts()
         {
-            return "Hello from products controller";
+            return Ok(_repository.GetAllProducts());
         }
+
+        
         [HttpGet("Products/{productName}")]
         public string GetProductByName(string productName)
         { 

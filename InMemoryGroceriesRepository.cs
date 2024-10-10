@@ -71,6 +71,11 @@ namespace Groceries
             return true;
         }
 
+        public Task<bool> SaveListOfProducts(List<Product> Products)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<bool> SaveListOfProductsWithDapperAsync(List<Product> Products)
         {
             throw new NotImplementedException();
@@ -97,6 +102,10 @@ namespace Groceries
         }
 
         public Task UpdateByIdUsingDapperAsync<Product>(Product updatedProduct)
+        {
+            throw new NotImplementedException();
+        }
+        public IEnumerable<Product> GetAllProducts()
         {
             throw new NotImplementedException();
         }
