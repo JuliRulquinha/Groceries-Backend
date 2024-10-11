@@ -1,0 +1,185 @@
+#main-div{
+   width: 100%;
+   height: 100%;
+
+}
+
+#product-div{
+    border: 1px solid rgb(0, 116, 10);
+    background-color: rgb(235, 243, 236);
+    border-radius: 10px;
+    height: 900px;
+    width: 950px;
+    margin: 25px;
+    margin-top: 130px;
+    flex-direction: row;
+    box-shadow: 0px 1px 2px 1px rgb(202, 202, 202) ;
+}
+
+header{
+    padding: 25px 0 25px 25px;
+    position: absolute;
+    background-color: green;
+    width: 99%;
+    height: 50px;
+    top: 0;
+    left: 0;
+    right: 0;
+    color: white;
+    font-size: 41px;
+}
+
+footer{
+    background-color: rgb(206, 247, 206);
+    margin-left: -8px;
+    margin-bottom: -10px;
+    padding: 16px 0 0 16px;
+    width: 100%;
+    height: 150px;
+    margin-top: 250px;
+}
+
+#product-card-container{
+    border: 1px solid rgb(0, 116, 10);
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    height: 845px;
+    width: 370px;
+    margin: 25px;
+    margin-top: 145;
+    flex-direction: row;
+    box-shadow: 0px 1px 2px 1px rgb(202, 202, 202) ;
+}
+
+#information-container{
+    background-color: rgb(251, 255, 252);
+    height: 845px;
+    width: 470px;
+    margin: 25px 20px 20px 0px;
+    margin-top: 145;
+    box-shadow: 3px 2px 10px 0px rgb(151, 167, 151);
+
+    
+}
+
+.product-display>div{
+    display: flex;
+    flex-direction: row;
+}
+
+#image-div{
+    border: 1px solid black;
+    margin: 25px;
+    height: 280px;
+    
+}
+
+#p-img{
+    height: 280px;
+    width: 310px;
+}
+
+#p-name{
+    font-size: 40px;
+    margin: 25px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#p-description{
+    margin: 25px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#p-price{
+    margin: 25px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+}
+
+#p-quantity{
+    margin: 25px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    background-color: green;
+    padding: 8px;
+    width: 90px;
+}
+
+#add-to-cart{
+    background-color: green;
+    color: white;
+    font-weight: bolder;
+    width: 150px;
+    height: 30px;
+    font-size: 15px;
+    margin: 25px;
+}
+
+#buy{
+    background-color: rgb(255, 255, 255);
+    color: green;
+    font-weight: bolder;
+    width: 150px;
+    height: 30px;
+    font-size: 15px;
+    margin: 25px;
+}
+
+#edit{
+    background-color: rgb(255, 255, 255);
+    color: green;
+    font-weight: bolder;
+    width: 150px;
+    height: 30px;
+    font-size: 15px;
+    margin: 25px;
+}
+
+#delete{
+    background-color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    width: 125px;
+    height: 30px;
+    font-size: 10px;
+    margin: 0 25px 25px 25px;
+}
+
+.quantity-buttons{
+    color: green;
+    font-weight: bolder;
+    font-size: 20px;
+    height: 10px;
+    width: 300px;
+    display: flex;
+    flex-direction: row; 
+    margin: 25px 0 10px 25px ;
+}
+
+#increase-1{
+    margin-right: 10px ;
+    border: 0cap;
+    background-color: rgb(100, 241, 100);
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    color: green;
+    border-radius: 250px;
+
+}
+
+#decrease-1{
+    margin-right: 10px ;
+    border: 0cap;
+    background-color: rgb(100, 241, 100);
+    width: 30px;
+    height: 30px;
+    font-size: 25px;
+    color: green;
+    border-radius: 20px;
+}
+
+#number{
+    margin: 5px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

@@ -24,6 +24,16 @@ namespace Groceries
             builder.Services.AddSwaggerGen();
             builder.Services.AddSingleton<SqlConnection>((_) => new SqlConnection("Server=localhost;Database=Groceries;Trusted_Connection=True;"));
             builder.Services.AddScoped<IGroceriesRepository, GroceriesRepository>();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    policy =>
+                    {
+                        policy.AllowAnyOrigin()
+                              .AllowAnyHeader()
+                              .AllowAnyMethod();
+                    });
+            });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -37,6 +47,7 @@ namespace Groceries
 
             app.UseAuthorization();
 
+            app.UseCors("AllowAll");
 
             app.MapControllers();
 

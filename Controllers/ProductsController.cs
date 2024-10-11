@@ -28,7 +28,14 @@ namespace Groceries.Controllers
             return Ok(_repository.GetAllProducts());
         }
 
-        
+        [HttpGet("{productId}")]
+
+        public IActionResult GetProductById(int productId)
+        {
+            var product = _repository.GetById(productId);
+            return Ok(product);
+        }
+
         [HttpGet("Products/{productName}")]
         public string GetProductByName(string productName)
         { 
@@ -80,10 +87,11 @@ namespace Groceries.Controllers
 
         [HttpDelete("Products/Delete/{id}")]
 
-        public void DeleteProduct(int id)
+        public IActionResult DeleteProduct(int id)
         {
            
            _repository.DeleteById(id);
+            return Ok("Product deleted.");
         }
 
         [HttpPost("Products/Insert/List")]

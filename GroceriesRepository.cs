@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using Dapper;
 using Groceries.Extensions;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 
 
@@ -46,6 +47,10 @@ namespace Groceries
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                _connection.Close();
             }
             return null;
         }
@@ -111,7 +116,7 @@ namespace Groceries
                 _command.Parameters.AddWithValue("@Description", product.Description);
                 _command.Parameters.AddWithValue("@price", product.Price);
                 _command.Parameters.AddWithValue("@quantity", product.Quantity);
-                _command.Parameters.AddWithValue("@categoryID", product.CategoryId);
+                _command.Parameters.AddWithValue("@categoryID", 2);
                 var result = _command.ExecuteNonQuery();
 
                 if (result == 0)
@@ -130,7 +135,10 @@ namespace Groceries
             {
                 Console.WriteLine(ex.Message);
             }
-
+            finally
+            {
+                _connection.Close();
+            }
             return true;
         }
 
@@ -175,20 +183,30 @@ namespace Groceries
                 string commandText = $"SELECT * FROM Products WHERE id={id}";
                 _command = _connection.CreateCommand();
                 _command.CommandText = commandText;
-                var output = _command.ExecuteNonQuery();
+                var reader = _command.ExecuteReader();
+                var p = new Product();
 
-                if (output == 0)
+                if (reader.Read())
                 {
-                    Console.WriteLine("The request failed.");
+                    p.Name = reader["name"].ToString();
+                    p.Description = reader["Description"].ToString();
+                    p.id = Convert.ToInt32(reader["id"]);
+                    p.ImgUrl = reader["imgUrl"].ToString();
+                    p.Quantity = Convert.ToInt32(reader["Quantity"]);
+                    p.Price = Convert.ToInt32(reader["Price"]);
+
                 }
-                else
-                {
-                    Console.WriteLine($"Number of rows targeted: {output}");
-                }
+
+                return p;
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                _connection.Close();
             }
             return null;
         }
@@ -207,7 +225,7 @@ namespace Groceries
                 _command.Parameters.AddWithValue("@Description", updatedProduct.Description);
                 _command.Parameters.AddWithValue("@price", updatedProduct.Price);
                 _command.Parameters.AddWithValue("@quantity", updatedProduct.Quantity);
-                _command.Parameters.AddWithValue("@categoryID", updatedProduct.CategoryId);
+                _command.Parameters.AddWithValue("@categoryID", 2);
                 _command.Parameters.AddWithValue("@id", id);
 
                 var result = _command.ExecuteNonQuery();
@@ -226,7 +244,10 @@ namespace Groceries
             {
                 Console.WriteLine(ex.Message);
             }
-
+            finally
+            {
+                _connection.Close();
+            }
         }
         public void DeleteById(int id)
         {
@@ -255,7 +276,10 @@ namespace Groceries
             {
                 Console.WriteLine(ex.Message);
             }
-
+            finally
+            {
+                _connection.Close();
+            }
 
         }
 

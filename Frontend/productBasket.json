@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Apricot",
+        "imgUrl": "https://cdn.britannica.com/36/160636-050-B1DC5C0A/Laetrile-apricot-pits.jpg",
+        "description": "A crisp and juicy red apple.",
+        "price": 1.99,
+        "quantity": 150,
+        "isAvailable": true
+    },
+    {
+        "id": 2,
+        "name": "Banana",
+        "imgUrl": "https://static.libertyprim.com/files/familles/banane-large.jpg?1569271725",
+        "description": "A long, curved yellow fruit with a sweet taste.",
+        "price": 0.99,
+        "quantity": 200,
+        "isAvailable": true
+    },
+    {
+        "id": 3,
+        "name": "Strawberry",
+        "imgUrl": "https://www.collinsdictionary.com/images/full/strawberry_227472010.jpg",
+        "description": "Small, round, and red fruits with a sweet and tart flavor.",
+        "price": 3.99,
+        "quantity": 100,
+        "isAvailable": true
+    },
+    {
+        "id": 4,
+        "name": "Date",
+        "imgUrl": "https://assets.bonappetit.com/photos/5aa97b1e7b904f1c0e1c36ee/16:9/w_1920,c_limit/Basically_Medjool-Dates.jpg",
+        "description": "Sweet, chewy fruit with a dark brown color.",
+        "price": 5.49,
+        "quantity": 50,
+        "isAvailable": true
+    }
+]

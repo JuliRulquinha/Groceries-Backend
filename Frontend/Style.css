@@ -1,0 +1,187 @@
+body{
+    margin: 0;
+}
+.order-button{
+    border: 1px solid black;
+    height: 30px;
+    width: 80px;
+    position: fixed;
+    margin: 100px 20px 20px 10px;
+}
+
+.fruits-display{
+    display: flex;
+    
+}
+
+.fruits-display>div{
+    border: 1px solid rgb(0, 116, 10);
+    background-color: rgb(235, 243, 236);
+    border-radius: 10px;
+    height: 620px;
+    width: 270px;
+    margin: 25px;
+    margin-top: 145;
+    flex-direction: row;
+    box-shadow: 0px 1px 2px 1px rgb(202, 202, 202) ;
+    transition: all 0.3s;
+}
+
+.fruits-display>div:hover{
+    box-shadow: 3px 3px 4px 3px rgba(0,0,0,0.2);
+}
+
+header{
+
+    padding: 25px 0 25px 25px;
+    position: absolute;
+    background-color: green;
+    width: 99%;
+    height: 50px;
+    top: 0;
+    left: 0;
+    right: 0;
+    color: white;
+    font-size: 41;
+
+    
+}
+
+.image-container{
+    box-shadow: 0 0 2px 2px rgb(154, 165, 154);
+    margin-top: 10px ;
+    margin-left: 8px;
+    margin-right: 5px;
+    margin-bottom: 20px;
+    height: 250px;
+    width: 250px;
+
+}
+
+.text-container{
+    border: 1px solid rgb(0, 0, 0);
+    margin-left: 7px;
+    margin-right: 5px;
+    margin-bottom: 5px;   
+    height: 130px;
+    width: 253px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.name-container{
+    background-color: green;
+    width: 100%;
+    height: 20px;
+    padding: 12px 0px 12px 0;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    text-align: center;
+    font-size: 25px;
+    color: white;
+}
+
+.price-container{
+    background-color: green;
+    margin: 0 5px 5px 5px;
+    height: 50px;
+    text-align: right;
+    color: white;
+    font-size: 30px;
+    padding-right: 12px;
+    padding-top: 12px;
+}
+
+.text-container>p{
+    padding: 0 15px 15px 15px;
+    font-size: 17px;
+}
+
+.quantity-container{
+    color: rgb(180, 248, 180);
+    background-color: rgb(113, 139, 113);
+    text-align: center;
+    font-size: 20px;
+    margin: 5px;
+}
+
+.rating-container{
+    font-size: 30;
+    text-align: center;
+    
+}
+
+
+#select-display-order{
+    height: 30px;
+    width: 150px;
+    top: 110px;
+    left: 32px;
+    position: relative;
+    
+}
+
+select{
+    
+    
+    font-size: 14px;
+    padding-left: 8px;
+}
+
+aside{
+    background-color: green;
+    height: 100px;
+    
+}
+
+footer{
+    background-color: rgb(206, 247, 206);
+    margin-left: -8px;
+    margin-bottom: -10px;
+    padding: 16px 0 0 16px;
+    width: 100%;
+    height: 150px;
+    margin-top: 250px;
+}
+
+.create-product{
+    border: 1px solid rgb(0, 116, 10);
+    background-color: rgb(235, 243, 236);
+    border-radius: 10px;
+    height: 500px;
+    width: 250px;
+    box-shadow: 0px 1px 2px 1px rgb(202, 202, 202);
+    margin: 25px;
+    padding: 16px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    
+}
+
+.input-information{
+    border: 1px solid green;
+}
+
+@media screen and (max-width:600px) and (orientation:portrait){
+
+    body{
+        margin: 0;
+    }
+
+    .fruits-display{
+        display: block;
+    }
+    .fruits-display>div{    
+        height: 620px;    
+        margin: 25px;    
+    }
+
+    header{
+        height: 80px;
+    }
+
+    #select-order{
+        top: 200px;
+        left: 25px;
+    }
+}
