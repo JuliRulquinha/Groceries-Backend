@@ -144,3 +144,6 @@ C:\Users\W1021H2\source\repos\groceries\bin\Debug\net8.0\zh-Hans\Microsoft.CodeA
 C:\Users\W1021H2\source\repos\groceries\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\W1021H2\source\repos\Groceries\bin\Debug\net8.0\Mapster.dll
 C:\Users\W1021H2\source\repos\Groceries\bin\Debug\net8.0\Mapster.Core.dll
+C:\Users\W1021H2\source\repos\Groceries\bin\Debug\net8.0\Frontend\GrocerieApp\package-lock.json
+C:\Users\W1021H2\source\repos\Groceries\bin\Debug\net8.0\Frontend\GrocerieApp\package.json
+C:\Users\W1021H2\source\repos\Groceries\bin\Debug\net8.0\Frontend\productBasket.json

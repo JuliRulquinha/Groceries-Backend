@@ -79,10 +79,12 @@ namespace Groceries.Controllers
 
         [HttpPut("Products/Update/{id}")]
 
-        public void UpdateProduct([FromBody]ProductDto dto, int id)
+        public IActionResult UpdateProduct([FromBody] ProductDto dto, int id)
         {
             var updatedProduct = dto.Adapt<Product>();
-            _repository.UpdateById(id,updatedProduct);
+            _repository.UpdateById(id, updatedProduct);
+            var msg = new { message = "Product updated successfully." };
+            return Ok(msg);
         }
 
         [HttpDelete("Products/Delete/{id}")]
