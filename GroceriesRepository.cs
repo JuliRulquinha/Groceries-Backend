@@ -1,9 +1,6 @@
 ﻿using System.Data.SqlClient;
 using Dapper;
 using Groceries.Extensions;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-
-
 
 
 namespace Groceries
@@ -78,9 +75,8 @@ namespace Groceries
                 _connection.Open();
 
                 string searchCommand = $"SELECT * FROM Products WHERE Name like '{name}'";
-                SqlCommand searchForProduct = _connection.CreateCommand();
-                searchForProduct.CommandText = searchCommand;
-                var reader = searchForProduct.ExecuteReader();
+                _command.CommandText = searchCommand;
+                var reader = _command.ExecuteReader();
                 Product p = new Product();
 
                 while (reader.Read())

@@ -23,7 +23,7 @@ namespace Groceries
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddSingleton<SqlConnection>((_) => new SqlConnection("Server=localhost;Database=Groceries;Trusted_Connection=True;"));
-            builder.Services.AddScoped<IGroceriesRepository, GroceriesRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll",
